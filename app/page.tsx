@@ -25,7 +25,7 @@ export default function Home() {
   };
 
   return (
-    <div className="w-full h-screen bg-white md:flex">
+    <div className="w-full h-screen bg-white md:flex text-black">
       <div className="absolute hidden lg:flex z-0 w-screen h-screen login-img2">
 
       </div>
