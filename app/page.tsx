@@ -3,10 +3,26 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowRight, Eye, EyeClosed } from "lucide-react";
 
 export default function Home() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const strongPasswordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const isPasswordStrong = strongPasswordPattern.test(password);
+  const isEmailValid = emailPattern.test(email);
+  const isFormValid = isEmailValid && isPasswordStrong;
+
+  const handleSignIn = () => {
+    if (isFormValid) {
+      router.push("/overview");
+    }
+  };
 
   return (
     <div className="w-full h-screen bg-white md:flex">
@@ -19,7 +35,7 @@ export default function Home() {
 
       </div>
       <div className=" p-5 md:px-10 md:w-1/2 z-10 lg:px-10  w-full h-full bg-white items-center justify-between flex flex-col">
-      <div className="hidden w-full md:flex items-start justify-end text-xs">
+      <div className="hidden w-full md:flex items-start justify-end text-xs gap-1">
             <p>Don't have an account?</p>
             <Link href="" className="text-blue-500 hover:underline">Contact us</Link> 
           </div>
@@ -32,14 +48,33 @@ export default function Home() {
           <form className="w-full max-w-xl  flex flex-col gap-4  mt-5 ">
             <div>
               <p>Email</p>
-              <input className="w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input
+                className={`w-full border rounded-md py-2 px-4 focus:outline-none focus:ring-2 ${
+                  email && !isEmailValid ? "border-red-300 focus:ring-red-500" : "border-gray-300 focus:ring-blue-500"
+                }`}
+                type="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                required
+              />
+              {email && !isEmailValid && (
+                <p className="mt-1 text-xs text-red-500">Enter a valid email address.</p>
+              )}
             </div>
             <div>
               <p>Password</p>
               <div className="relative">
                 <input
-                  className="w-full border border-gray-300 rounded-md py-2 px-4 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className={`w-full border rounded-md py-2 px-4 pr-10 focus:outline-none focus:ring-2 ${
+                    password && !isPasswordStrong ? "border-red-300 focus:ring-red-500" : "border-gray-300 focus:ring-blue-500"
+                  }`}
                   type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  minLength={8}
+                  required
+                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z0-9]).{8,}$"
+                  title="Use 8+ characters with uppercase, lowercase, numbers, and symbols."
                 />
                 <button
                   type="button"
@@ -50,6 +85,9 @@ export default function Home() {
                   {showPassword ? <EyeClosed size={18} /> : <Eye size={18} />}
                 </button>
               </div>
+              <p className={`mt-1 text-xs ${password && !isPasswordStrong ? "text-red-500" : "text-gray-500"}`}>
+                Your password includes at least 8 characters, including uppercase, lowercase, a number, and a symbol.
+              </p>
             </div>
             <div className="flex items-center justify-between">
               <div className="flex gap-2 items-center">
@@ -60,9 +98,16 @@ export default function Home() {
                 Forgot password?
               </Link>
             </div>
-            <button className="w-full bg-[#0B1F3A] items-center justify-center flex text-white rounded py-2 px-4 hover:bg-[#0B1F3A]/90 transition duration-300 ease-in-out gap-2">
+            <button
+              type="button"
+              onClick={handleSignIn}
+              disabled={!isFormValid}
+              className={`w-full items-center justify-center flex text-white rounded py-2 px-4 transition duration-300 ease-in-out gap-2 ${
+                isFormValid ? "bg-[#0B1F3A] hover:bg-[#0B1F3A]/90" : "bg-gray-400 cursor-not-allowed"
+              }`}
+            >
               <p className="text-white font-bold">Sign In</p>
-              <ArrowRight/>
+              <ArrowRight />
             </button>
             <div className="w-full items-center justify-between flex">
               <div className="w-20 lg:w-40 h-px bg-gray-500"></div>

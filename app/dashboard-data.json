@@ -1,0 +1,112 @@
+{
+  "userProfile": {
+    "firstName": "Nelida",
+    "lastName": "Joseph",
+    "email": "nelida.joseph@payflow.com",
+    "businessName": "Sunrise Boutique",
+    "accountType": "Business Account"
+  },
+  "navItems": [
+    { "label": "Overview", "icon": "Home", "active": true },
+    { "label": "Transactions", "icon": "DollarSign" },
+    { "label": "Settlements", "icon": "Handshake" },
+    { "label": "Settings", "icon": "Settings" }
+  ],
+  "topBar": {
+    "searchPlaceholder": "Search anything...",
+    "dateRangeLabel": "Last 30 days"
+  },
+  "welcome": {
+    "greeting": "Good morning, Nelida",
+    "subtitle": "Here's an overview of your business performance."
+  },
+  "stats": [
+    {
+      "title": "Total Transaction Value",
+      "value": "KES 1,284,500",
+      "change": "12.4%",
+      "compareText": "vs previous period",
+      "changeType": "positive",
+      "icon": "DollarSign",
+      "tone": "blue"
+    },
+    {
+      "title": "Transactions",
+      "value": "2,846",
+      "change": "8.2%",
+      "compareText": "vs previous period",
+      "changeType": "positive",
+      "icon": "Banknote",
+      "tone": "teal"
+    },
+    {
+      "title": "Available Balance",
+      "value": "KES 428,750",
+      "change": "",
+      "compareText": "Available for settlement",
+      "changeType": "",
+      "icon": "Wallet",
+      "tone": "green"
+    },
+    {
+      "title": "Pending Settlements",
+      "value": "KES 86,400",
+      "change": "2 pending",
+      "compareText": "",
+      "changeType": "warning",
+      "icon": "TriangleAlert",
+      "tone": "amber"
+    }
+  ],
+  "quickActions": [
+    { "label": "View Transactions", "icon": "Wallet" },
+    { "label": "View Settlements", "icon": "Handshake" },
+    { "label": "Download Report", "icon": "FileDown" }
+  ],
+  "chart": {
+    "title": "Transaction Trends",
+    "subtitle": "Transaction value over time",
+    "periods": ["Aug 10", "Aug 17", "Aug 24", "Aug 31", "Sep 7"],
+    "values": [150000, 220000, 270000, 340000, 260000, 420000]
+  },
+  "paymentStatus": {
+    "total": 2846,
+    "successful": 82,
+    "pending": 11,
+    "failed": 7
+  },
+  "transactions": [
+    {
+      "id": "TXN-928401",
+      "customer": "Sarah Wanjiku",
+      "method": "M-Pesa",
+      "amount": "KES 4,500",
+      "status": "Successful",
+      "dateTime": "09 Sep 2026, 14:32"
+    },
+    {
+      "id": "TXN-928400",
+      "customer": "Daniel K.",
+      "method": "Card",
+      "amount": "KES 12,800",
+      "status": "Pending",
+      "dateTime": "09 Sep 2026, 12:11"
+    },
+    {
+      "id": "TXN-928399",
+      "customer": "Grace M.",
+      "method": "M-Pesa",
+      "amount": "KES 2,450",
+      "status": "Successful",
+      "dateTime": "08 Sep 2026, 18:45"
+    },
+    {
+      "id": "TXN-928398",
+      "customer": "John O.",
+      "method": "Card",
+      "amount": "KES 7,400",
+      "status": "Failed",
+      "dateTime": "08 Sep 2026, 16:20"
+    }
+  ]
+}
